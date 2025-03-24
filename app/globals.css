@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 220, 210, 205;
+  --primary-color: #a54f00;
+  --secondary-color: #4b5320;
+  --secondary-text-color: #e6d6be;
+  --background-primary: #ccb299;
+  --background-secondary: #4b5320;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-rgb: 220, 210, 205;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  background-color: #ccb299;
+  /* background-image: url("../assets/images/background.jpg"); */
+  min-height: 100%;
+  font-family: "Quicksand", sans-serif;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+main {
+  scroll-behavior: smooth;
+}
+
+/* main section .section-container {
+  max-width: 1200px;
+} */
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .image-ellipse {
+    clip-path: ellipse(50% 50%);
+  }
+}
+
+.revealing-image {
+  /* Create View Timeline */
+  view-timeline-name: --revealing-image;
+  view-timeline-axis: block;
+
+  /* Attach animation, linked to the  View Timeline */
+  animation: linear reveal both;
+  animation-timeline: --revealing-image;
+
+  /* Tweak range when effect should run*/
+  animation-range: entry 25% cover 50%;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    /* clip-path: inset(45% 20% 45% 20%); */
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    /* clip-path: inset(0% 0% 0% 0%); */
+    transform: translateX(0);
+  }
+}
+
+@font-face {
+  font-family: "Catchye";
+  src: url("../public/fonts/catchye.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pritude Radiance";
+  src: url("../public/fonts/pritude-radiance.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Chillen";
+  src: url("../public/fonts/chillen.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-catchye: "'Catchye'", "'sans-serif'";
+  --font-chillen: "'Chillen'", "'Catchye'" "'sans-serif'";
+  --font-pritude-radiance: "'Pritude Radiance'", "'Catchye'" "'sans-serif'";
+}
