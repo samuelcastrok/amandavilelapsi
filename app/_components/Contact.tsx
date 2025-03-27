@@ -14,9 +14,9 @@ declare module "react" {
 export default function Contact(props: {id: string}) {
   return (
     <section id={props.id} className="h-full  text-secondary-color bg-[url(../public/images/VLFC0500.jpg)] bg-[center_60%] bg-cover">
-      <div className="h-full w-full px-20 py-[100px] m-auto backdrop-blur-[3px]">
-        <div className="flex">
-          <div className="w-1/2 p-8">
+      <div className="h-full w-full px-4 sm:px-20 py-[100px] m-auto backdrop-blur-[3px]">
+        <div className="flex flex-col sm:flex-col">
+          <div className="w-full sm:w-1/2 p-8">
             <ul>
               <li className="flex items-center gap-6 my-4">
                 <WhatsAppIcon color="var(--secondary-color)" className="h-6 w-6" />
@@ -65,7 +65,7 @@ export default function Contact(props: {id: string}) {
               </li>
             </ul>
           </div>
-          <div className="w-1/2">
+          <div className="w-full sm:w-1/2">
             <h1 className="text-6xl text-[#e6d6be] font-pritude-radiance">Entre em contato</h1>
             <form className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" netlify="true" >
               <div>

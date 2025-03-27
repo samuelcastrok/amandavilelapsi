@@ -10,10 +10,13 @@ const config: Config = {
     theme: {
         extend: {
             height: {
-                'body-size': 'calc(100dvh - 84px)'
+                'body-size': 'calc(100dvh - 90px)'
             },
             minHeight: {
-                'body-size': 'calc(100dvh - 84px)'
+                'body-size': 'calc(100dvh - 90px)'
+            },
+            maxHeight: {
+                'body-size': 'calc(100dvh - 90px)'
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

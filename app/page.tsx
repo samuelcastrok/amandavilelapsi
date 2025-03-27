@@ -3,7 +3,15 @@ import About from "./_components/About";
 import Contact from "./_components/Contact";
 import Services from "./_components/Services";
 import Psycotherapy from "./_components/Approach";
-import whatsAppIcon from '../public/images/whatsapp-raw.svg'
+import whatsAppIcon from '../public/images/whatsapp-raw.svg';
+import { Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 export default function HomePage() {
   return (    

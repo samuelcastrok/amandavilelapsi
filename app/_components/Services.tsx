@@ -11,7 +11,7 @@ export default function Services(props: {id: string}) {
         <h1 className="text-6xl text-secondary-color font-pritude-radiance"> Atendimento </h1>
         <hr className="w-full bt-1 border-secondary-color" />
       </header>
-      <div className="flex gap-16 justify-center h-full">
+      <div className="flex flex-col sm:flex-row gap-16 justify-center h-full">
         <div className="group text-lg leading-6  text-justify rounded-lg overflow-hidden max-w-sm h-full">
           {/* <Image 
             className="p-8 h-[256px] scale-90 group-hover:scale-100 transition-[transform] duration-100 ease-linear"
