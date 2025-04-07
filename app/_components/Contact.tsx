@@ -5,17 +5,11 @@ import InstagramIcon from "./icons/InstagramIcon";
 import LinkedInIcon from "./icons/LinkedInIcon";
 import GmailIcon from "./icons/GmailIcon";
 
-declare module "react" {
-  interface FormHTMLAttributes <T> extends HTMLAttributes<T> {
-    netlify?: string;
-  }
-}
-
 export default function Contact(props: {id: string}) {
   return (
     <section id={props.id} className="h-full  text-secondary-color bg-[url(../public/images/VLFC0500.jpg)] bg-[center_60%] bg-cover">
-      <div className="h-full w-full px-4 sm:px-20 py-[100px] m-auto backdrop-blur-[3px]">
-        <div className="flex flex-col sm:flex-col">
+      <div className="h-full w-full px-4 sm:px-20 py-10 m-auto backdrop-blur-[3px]">
+        <div className="flex flex-col sm:flex-row">
           <div className="w-full sm:w-1/2 p-8">
             <ul>
               <li className="flex items-center gap-6 my-4">
@@ -67,7 +61,7 @@ export default function Contact(props: {id: string}) {
           </div>
           <div className="w-full sm:w-1/2">
             <h1 className="text-6xl text-[#e6d6be] font-pritude-radiance">Entre em contato</h1>
-            <form className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" netlify="true" >
+            <form className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" data-netlify="true" >
               <div>
                 <label htmlFor="name" className="block">
                   Nome
@@ -77,7 +71,7 @@ export default function Contact(props: {id: string}) {
                   name="name"
                   title=""
                   type="text"
-                  className="block mt-2 rounded-md outline outline-1 outline-gray-300 w-full"
+                  className="block mt-2 rounded-md outline outline-1 outline-gray-300 w-full p-2 text-black"
                 />
               </div>
               <div>
@@ -88,7 +82,7 @@ export default function Contact(props: {id: string}) {
                   id="email"
                   name="email"
                   type="email"
-                  className="mt-2 w-full rounded-md outline outline-1 outline-gray-300"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300"
                 />
               </div>
               <div>
@@ -99,7 +93,7 @@ export default function Contact(props: {id: string}) {
                   id="phone"
                   name="phone"
                   type="tel"
-                  className="mt-2 w-full rounded-md outline outline-1 outline-gray-300"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300"
                 />
               </div>
               <div>
@@ -109,7 +103,7 @@ export default function Contact(props: {id: string}) {
                 <textarea
                   id="message"
                   name="message"
-                  className="mt-2 w-full rounded-md outline outline-1 outline-gray-300"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300"
                 />
               </div>
               <button className="bg-primary-color text-[#e6d6be] rounded-full p-2">Enviar mensagem</button>

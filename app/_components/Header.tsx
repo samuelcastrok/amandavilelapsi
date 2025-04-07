@@ -13,6 +13,7 @@ function classNames(...classes: string[]) {
 
 export default function Header() {
   const [activeHash, setActiveHash] = useState("#about");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -28,6 +29,10 @@ export default function Header() {
 
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen); 
+  }
 
 
   return (    
@@ -52,7 +57,7 @@ export default function Header() {
           }
         </div>
         <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
-            <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-secondary-color focus:ring-2 focus:bg-secondary-color focus:text-secondary-text-color focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
+            <button type="button" className="relative inline-flex items-center justify-center rounded-md p-2 text-secondary-color focus:ring-2 focus:bg-secondary-color focus:text-secondary-text-color focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false" onClick={toggleMenu}>
               <span className="absolute -inset-0.5"></span>
               <span className="sr-only">Open main menu</span>
             
@@ -66,6 +71,16 @@ export default function Header() {
             </button>
           </div>
       </nav>
+
+      {isMenuOpen && (
+        <div className="absolute top-[84px] left-0 w-full bg-background-primary text-secondary-color z-40 flex flex-col items-center gap-4 py-4">
+          {NavigationList.map((item) => (
+            <a key={item.name} href={item.href} onClick={toggleMenu}>
+              {item.name}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
 }

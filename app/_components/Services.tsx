@@ -5,7 +5,7 @@ import contactIcon from '../../assets/images/undraw_personal-file_81l0.svg'
 
 export default function Services(props: {id: string}) {
   return (
-    <section id={props.id} className="flex flex-col px-20 py-[100px] gap-6 my-20 m-auto">
+    <section id={props.id} className="flex flex-col px-20 py-10 gap-6 m-auto">
       <header className="grid items-center justify-center grid-cols-[1fr_auto_1fr] gap-4">
         <hr className="w-full bt-1 border-secondary-color" />
         <h1 className="text-6xl text-secondary-color font-pritude-radiance"> Atendimento </h1>

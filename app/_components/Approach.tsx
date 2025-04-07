@@ -3,13 +3,13 @@ import approachImage from '../../public/images/approach.jpeg';
 
 export default function Approach(props: {id: string}) {
   return (
-    <section id={props.id} className="relative flex w-full flex-col py-[100px] pb-[100px] px-4 sm:pl-20 gap-6 bg-background-secondary text-[#e6d6be]">
+    <section id={props.id} className="relative flex w-full flex-col py-10 px-8 sm:pl-20 gap-6 bg-background-secondary text-[#e6d6be]">
       <div className="section-container m-auto">
         <header className="flex items-center gap-4">
           <h1 className="mb-6 text-6xl font-pritude-radiance">Abordagem</h1>
           <hr className="w-full bt-1 border-[#e6d6be]" />
         </header>
-        <div className="section-container sm:max-w-[55%]">          
+        <div className="section-container flex flex-col gap-2 sm:max-w-[55%]">          
           <p>
             Meu trabalho é pautado nas Terapias Comportamentais Contextuais, com foco na ACT, Terapia de Aceitação e Compromisso.
           </p>
@@ -24,11 +24,12 @@ export default function Approach(props: {id: string}) {
         </div>
       </div>  
       <Image
-        className="hidden sm:flex absolute w-auto h-[calc(100%_+_20px)] right-0 top-[-10px] bottom-[-10px] object-contain object-left rounded-tl-full rounded-bl-full max-w-[40%]"
+        className="hidden sm:flex absolute w-auto h-[calc(100%_+_20px)] right-0 top-[-10px] bottom-[-10px] object-cover object-left rounded-tl-full rounded-bl-full max-w-[40%]"
         src={approachImage}
         alt="approach"
         width={approachImage.width}
         height={approachImage.height}
+        priority
       />              
     </section>
     

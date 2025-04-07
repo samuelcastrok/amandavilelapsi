@@ -3,7 +3,7 @@ import aboutImage from '../../public/images/about2.jpg';
 
 export default function About(props: {id: string}) {
   return (
-    <section id={props.id} className="flex flex-col px-6 py-12 sm:pl-20 sm:px-8 sm:py-[100px] gap-6  m-auto snap-start text-secondary-color max-w-screen-xl">
+    <section id={props.id} className="flex flex-col px-6 py-10 sm:pl-20 sm:px-8  gap-6  m-auto snap-start text-secondary-color max-w-screen-xl">
       <header>
         <h1 className="text-6xl font-pritude-radiance">Sobre mim</h1>
       </header>
@@ -14,6 +14,7 @@ export default function About(props: {id: string}) {
           src={aboutImage.src}
           width={aboutImage.width}
           height={aboutImage.height}
+          priority
         />
         <div className=" flex flex-col h-full px-12 gap-y-4 max-w-screen-md">
           <p>
