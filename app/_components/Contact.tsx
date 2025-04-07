@@ -11,20 +11,31 @@ export default function Contact(props: {id: string}) {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent default form submission
-    setFormStatus("submitting");
+    event.preventDefault(); 
 
-    const formData = new FormData(event.currentTarget);
+    const target = event.target as HTMLFormElement;
+    const formData = new FormData(target);
+    
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const phone = formData.get("phone") as string;
+    const message = formData.get("message") as string;
 
     try {
       const response = await fetch("/", {
         method: "POST",
-        body: formData,
-      });
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          name,
+          email,
+          phone,
+          message,
+        }).toString(),
+      })
 
       if (response.ok) {
         setFormStatus("success");
-        (event.target as HTMLFormElement).reset(); 
+        target.reset(); 
       } else {
         setFormStatus("error");
       }
@@ -91,7 +102,7 @@ export default function Contact(props: {id: string}) {
             <h1 className="text-6xl text-[#e6d6be] font-pritude-radiance">Entre em contato</h1>
             <form 
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
-              data-netlify="true" 
+              data-netlify="true"
               onSubmit={handleSubmit}
             >
               <div>
