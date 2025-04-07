@@ -1,11 +1,39 @@
+'use client';
+
 import "react";
-import Image from 'next/image'
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import InstagramIcon from "./icons/InstagramIcon";
 import LinkedInIcon from "./icons/LinkedInIcon";
 import GmailIcon from "./icons/GmailIcon";
+import { useState } from "react";
 
 export default function Contact(props: {id: string}) {
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // Prevent default form submission
+    setFormStatus("submitting");
+
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setFormStatus("success");
+        (event.target as HTMLFormElement).reset(); 
+      } else {
+        setFormStatus("error");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setFormStatus("error");
+    }
+  };
+
   return (
     <section id={props.id} className="h-full  text-secondary-color bg-[url(../public/images/VLFC0500.jpg)] bg-[center_60%] bg-cover">
       <div className="h-full w-full px-4 sm:px-20 py-10 m-auto backdrop-blur-[3px]">
@@ -61,7 +89,11 @@ export default function Contact(props: {id: string}) {
           </div>
           <div className="w-full sm:w-1/2">
             <h1 className="text-6xl text-[#e6d6be] font-pritude-radiance">Entre em contato</h1>
-            <form className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" data-netlify="true" >
+            <form 
+              className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
+              data-netlify="true" 
+              onSubmit={handleSubmit}
+            >
               <div>
                 <label htmlFor="name" className="block">
                   Nome
@@ -106,7 +138,7 @@ export default function Contact(props: {id: string}) {
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300"
                 />
               </div>
-              <button className="bg-primary-color text-[#e6d6be] rounded-full p-2">Enviar mensagem</button>
+              <button className="bg-primary-color text-[#e6d6be] rounded-full p-2" disabled={formStatus === "submitting"}>Enviar mensagem</button>
             </form>
           </div>
         </div>
