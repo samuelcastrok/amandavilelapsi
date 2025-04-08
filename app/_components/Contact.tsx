@@ -107,6 +107,7 @@ export default function Contact(props: {id: string}) {
               data-netlify="true"
               onSubmit={handleSubmit}
             >
+              <input type="hidden" name="form-name" value="contact" />
               <div>
                 <label htmlFor="name" className="block">
                   Nome
