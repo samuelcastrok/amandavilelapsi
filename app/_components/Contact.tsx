@@ -104,7 +104,9 @@ export default function Contact(props: {id: string}) {
               name="contact"
               method="POST"
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
-              netlify
+              netlify="true"
+              onSubmit={handleSubmit}
+              data-netlify="true"
             >
               <div>
                 <label htmlFor="name" className="block">
@@ -126,7 +128,7 @@ export default function Contact(props: {id: string}) {
                   id="email"
                   name="email"
                   type="email"
-                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
               </div>
               <div>
@@ -137,7 +139,7 @@ export default function Contact(props: {id: string}) {
                   id="phone"
                   name="phone"
                   type="tel"
-                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
               </div>
               <div>
@@ -147,7 +149,7 @@ export default function Contact(props: {id: string}) {
                 <textarea
                   id="message"
                   name="message"
-                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
               </div>
               <button className="bg-primary-color text-[#e6d6be] rounded-full p-2" disabled={formStatus === "submitting"}>Enviar mensagem</button>

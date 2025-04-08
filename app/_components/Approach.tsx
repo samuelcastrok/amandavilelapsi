@@ -3,7 +3,7 @@ import approachImage from '../../public/images/approach.jpeg';
 
 export default function Approach(props: {id: string}) {
   return (
-    <section id={props.id} className="relative flex w-full flex-col py-10 px-8 sm:pl-20 gap-6 bg-background-secondary text-[#e6d6be]">
+    <section id={props.id} className="relative flex w-full flex-col py-10 px-16 sm:pl-20 gap-6 bg-background-secondary text-[#e6d6be]">
       <div className="section-container m-auto">
         <header className="flex items-center gap-4">
           <h1 className="mb-6 text-6xl font-pritude-radiance">Abordagem</h1>
