@@ -101,9 +101,10 @@ export default function Contact(props: {id: string}) {
           <div className="w-full sm:w-1/2">
             <h1 className="text-6xl text-[#e6d6be] font-pritude-radiance">Entre em contato</h1>
             <form 
+              name="contact"
+              method="POST"
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
-              data-netlify="true"
-              onSubmit={handleSubmit}
+              netlify
             >
               <div>
                 <label htmlFor="name" className="block">
