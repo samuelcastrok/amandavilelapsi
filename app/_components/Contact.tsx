@@ -104,9 +104,8 @@ export default function Contact(props: {id: string}) {
               name="contact"
               method="POST"
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
-              netlify="true"
-              onSubmit={handleSubmit}
               data-netlify="true"
+              onSubmit={handleSubmit}
             >
               <div>
                 <label htmlFor="name" className="block">
