@@ -123,7 +123,6 @@ export default function Contact(props: {id: string}) {
               method="POST"
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
               data-netlify="true"
-              onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="contact" />
               <div>
