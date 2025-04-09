@@ -52,17 +52,23 @@ export default function Contact(props: {id: string}) {
 
     const target = event.target as HTMLFormElement;
     const formData = new FormData(target);
-    const formEntries: [string, string][] = Array.from(formData.entries()).map(
-      ([key, value]) => [key, value.toString()]
-    );
+
+    const data = {
+      "form-name": "contact",
+      name: formData.get("name")?.toString() ?? "",
+      email: formData.get("email")?.toString() ?? "",
+      phone,
+      message: formData.get("message")?.toString() ?? "",
+    };
   
     await fetch("/__forms.html", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formEntries).toString(),
+      body: new URLSearchParams(data).toString(),
     });
 
     setPhone("");
+    target.reset(); 
   };
 
   const formatPhone = (value: string) => {
