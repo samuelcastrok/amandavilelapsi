@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 
 import "react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
@@ -8,60 +8,60 @@ import GmailIcon from "./icons/GmailIcon";
 import { useState } from "react";
 
 export default function Contact(props: {id: string}) {
-  const [phone, setPhone] = useState("");
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  // const [phone, setPhone] = useState("");
+  // const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); 
+  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault(); 
 
-    const target = event.target as HTMLFormElement;
-    const formData = new FormData(target);
+  //   const target = event.target as HTMLFormElement;
+  //   const formData = new FormData(target);
     
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const rawPhone = formData.get("phone")?.toString() ?? "";
-    const phone = rawPhone.replace(/\D/g, "");
-    const message = formData.get("message") as string;
+  //   const name = formData.get("name") as string;
+  //   const email = formData.get("email") as string;
+  //   const rawPhone = formData.get("phone")?.toString() ?? "";
+  //   const phone = rawPhone.replace(/\D/g, "");
+  //   const message = formData.get("message") as string;
 
-    try {
-      const response = await fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          'form-name': 'contact',
-          name,
-          email,
-          phone,
-          message,
-        }).toString(),
-      })
+  //   try {
+  //     const response = await fetch("/", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //       body: new URLSearchParams({
+  //         'form-name': 'contact',
+  //         name,
+  //         email,
+  //         phone,
+  //         message,
+  //       }).toString(),
+  //     })
 
-      if (response.ok) {
-        setFormStatus("success");
-        target.reset(); 
-      } else {
-        setFormStatus("error");
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      setFormStatus("error");
-    }
-  };
+  //     if (response.ok) {
+  //       setFormStatus("success");
+  //       target.reset(); 
+  //     } else {
+  //       setFormStatus("error");
+  //     }
+  //   } catch (error) {
+  //     console.error("Form submission error:", error);
+  //     setFormStatus("error");
+  //   }
+  // };
 
-  const formatPhone = (value: string) => {
-    const number = value.replace(/\D/g, "").slice(0, 11);
-    const match = number.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
+  // const formatPhone = (value: string) => {
+  //   const number = value.replace(/\D/g, "").slice(0, 11);
+  //   const match = number.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
 
-    if (!match) return value;
-    const [, ddd, firstPart, secondPart] = match;
-    let result = "";
-    if (ddd) result += `(${ddd}`;
-    if (ddd && ddd.length === 2) result += `) `;
-    if (firstPart) result += firstPart;
-    if (secondPart) result += `-${secondPart}`;
-    console.log(result);
-    return result;
-  }
+  //   if (!match) return value;
+  //   const [, ddd, firstPart, secondPart] = match;
+  //   let result = "";
+  //   if (ddd) result += `(${ddd}`;
+  //   if (ddd && ddd.length === 2) result += `) `;
+  //   if (firstPart) result += firstPart;
+  //   if (secondPart) result += `-${secondPart}`;
+  //   console.log(result);
+  //   return result;
+  // }
 
   return (
     <section id={props.id} className="h-full  text-secondary-color bg-[url(../public/images/VLFC0500.jpg)] bg-[center_60%] bg-cover">
@@ -122,7 +122,8 @@ export default function Contact(props: {id: string}) {
               name="contact"
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
               data-netlify="true"
-              onSubmit={handleSubmit}
+              method="POST"
+              // onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="contact" />
               <div>
@@ -156,12 +157,12 @@ export default function Contact(props: {id: string}) {
                   id="phone"
                   name="phone"
                   type="tel"
-                  value={phone}
+                  // value={phone}
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
-                  onChange={(event) => {
-                    const formattedValue = formatPhone(event.target.value);
-                    setPhone(formattedValue);
-                  }}
+                  // onChange={(event) => {
+                  //   const formattedValue = formatPhone(event.target.value);
+                  //   setPhone(formattedValue);
+                  // }}
                 />
               </div>
               <div>
@@ -174,7 +175,7 @@ export default function Contact(props: {id: string}) {
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
               </div>
-              <button className="bg-primary-color text-[#e6d6be] rounded-full p-2" disabled={formStatus === "submitting"}>Enviar mensagem</button>
+              <button className="bg-primary-color text-[#e6d6be] rounded-full p-2" >Enviar mensagem</button>
             </form>
           </div>
         </div>
