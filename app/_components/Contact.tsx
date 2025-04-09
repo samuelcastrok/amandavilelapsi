@@ -1,5 +1,3 @@
-'use client';
-
 import "react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import InstagramIcon from "./icons/InstagramIcon";
@@ -65,6 +63,14 @@ export default function Contact(props: {id: string}) {
 
   return (
     <section id={props.id} className="h-full  text-secondary-color bg-[url(../public/images/VLFC0500.jpg)] bg-[center_60%] bg-cover">
+
+      <form name="contact" data-netlify="true" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="tel" name="phone" />
+        <textarea name="message" />
+      </form>
+
       <div className="h-full w-full px-4 sm:px-20 py-10 m-auto backdrop-blur-[3px]">
         <div className="flex flex-col sm:flex-row">
           <div className="w-full sm:w-1/2 p-8">
