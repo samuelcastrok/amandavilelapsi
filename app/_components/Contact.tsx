@@ -8,6 +8,7 @@ import GmailIcon from "./icons/GmailIcon";
 import { useState } from "react";
 
 export default function Contact(props: {id: string}) {
+  const [phone, setPhone] = useState("");
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,7 +19,8 @@ export default function Contact(props: {id: string}) {
     
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
-    const phone = formData.get("phone") as string;
+    const rawPhone = formData.get("phone")?.toString() ?? "";
+    const phone = rawPhone.replace(/\D/g, "");
     const message = formData.get("message") as string;
 
     try {
@@ -26,6 +28,7 @@ export default function Contact(props: {id: string}) {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({
+          'form-name': 'contact',
           name,
           email,
           phone,
@@ -44,6 +47,21 @@ export default function Contact(props: {id: string}) {
       setFormStatus("error");
     }
   };
+
+  const formatPhone = (value: string) => {
+    const number = value.replace(/\D/g, "").slice(0, 11);
+    const match = number.match(/^(\d{0,2})(\d{0,5})(\d{0,4})$/);
+
+    if (!match) return value;
+    const [, ddd, firstPart, secondPart] = match;
+    let result = "";
+    if (ddd) result += `(${ddd}`;
+    if (ddd && ddd.length === 2) result += `) `;
+    if (firstPart) result += firstPart;
+    if (secondPart) result += `-${secondPart}`;
+    console.log(result);
+    return result;
+  }
 
   return (
     <section id={props.id} className="h-full  text-secondary-color bg-[url(../public/images/VLFC0500.jpg)] bg-[center_60%] bg-cover">
@@ -139,7 +157,12 @@ export default function Contact(props: {id: string}) {
                   id="phone"
                   name="phone"
                   type="tel"
+                  value={phone}
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
+                  onChange={(event) => {
+                    const formattedValue = formatPhone(event.target.value);
+                    setPhone(formattedValue);
+                  }}
                 />
               </div>
               <div>
