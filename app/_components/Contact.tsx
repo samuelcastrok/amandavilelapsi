@@ -1,3 +1,5 @@
+'use client';
+
 import "react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import InstagramIcon from "./icons/InstagramIcon";
