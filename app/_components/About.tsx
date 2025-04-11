@@ -16,7 +16,7 @@ export default function About(props: {id: string}) {
           height={aboutImage.height}
           priority
         />
-        <div className=" flex flex-col h-full px-12 gap-y-4 max-w-screen-md">
+        <div className=" flex flex-col h-full gap-y-4 max-w-screen-md">
           <p>
             Oi, sou a Amanda! :) 
           </p>

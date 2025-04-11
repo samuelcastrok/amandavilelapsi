@@ -1,43 +1,47 @@
 'use client';
 
 import Image from "next/image";
-import NavigationList from "../config/NavigationList";
-import logo from '../../public/images/logo.svg'
 import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
+import logo from '../../public/images/logo.svg'
+import NavigationList from "../config/NavigationList";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-
 export default function Header() {
   const [activeHash, setActiveHash] = useState("#about");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      console.log('hash changed');
-      
-      setActiveHash(window.location.hash);
-    };
+    const handleHashChange = () => setActiveHash(window.location.hash);
+    const handleScroll = () => setScrolled(window.scrollY > 10);
 
     window.addEventListener("hashchange", handleHashChange);
-    window.addEventListener("popstate", handleHashChange);
+    window.addEventListener("scroll", handleScroll);
 
     handleHashChange(); 
 
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleHashChange); 
+    }
   }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen); 
   }
 
-
   return (    
-    <header className="sticky inset-x-0 top-0 z-50 h-[84px] select-none bg-background-primary text-secondary-color">
-      <nav className="flex items-center justify-between h-full g-8 relative" aria-label="Global">
+    <header className="sticky inset-x-0 mt-2 top-0 z-50 h-[84px] select-none bg-background-primary text-secondary-color">
+      <nav className={`flex items-center h-full justify-between  g-8 relative ${
+        scrolled
+          ? "bg-background-primary/80 shadow backdrop-blur"
+          : "bg-transparent"
+      }`} aria-label="Global">
         <Image className="h-full max-w-[200px] px-4" src={logo} alt="Logo"/>
         <div className="hidden px-4 sm:flex">
           {
@@ -72,15 +76,35 @@ export default function Header() {
           </div>
       </nav>
 
-      {isMenuOpen && (
-        <div className="absolute top-[84px] left-0 w-full bg-background-primary text-secondary-color z-40 flex flex-col items-center gap-4 py-4">
-          {NavigationList.map((item) => (
-            <a key={item.name} href={item.href} onClick={toggleMenu}>
-              {item.name}
-            </a>
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-[84px] left-0 w-full bg-background-primary text-secondary-color z-40 flex flex-col items-center gap-4 py-4"
+          >
+            <nav className="flex flex-col items-center gap-4">
+              {NavigationList.map((item) => (                
+                <a
+                key={item.name}
+                href={item.href}
+                aria-current={item.href === activeHash ? 'page' : undefined}
+                className={classNames(
+                  item.href === activeHash ? 'bg-[#e6d6be] text-primary-color border-b-primary-color' : 'bg-transparent border-b-transparent',
+                  'px-3 py-2 text-l font-semibold border-b-2 hover:text-primary-color hover:bg-[#E6D6BE] hover:border-b-primary-color'
+                )}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+              ))}
+            </nav>            
+          </motion.div>
+        )}
+      </AnimatePresence>
+      
     </header>
   );
 }

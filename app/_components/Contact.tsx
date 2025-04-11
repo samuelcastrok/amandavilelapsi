@@ -53,11 +53,12 @@ export default function Contact(props: {id: string}) {
     const target = event.target as HTMLFormElement;
     const formData = new FormData(target);
 
+
     const data = {
       "form-name": "contact",
       name: formData.get("name")?.toString() ?? "",
       email: formData.get("email")?.toString() ?? "",
-      phone,
+      phone: phone,
       message: formData.get("message")?.toString() ?? "",
     };
   
@@ -82,7 +83,6 @@ export default function Contact(props: {id: string}) {
     if (ddd && ddd.length === 2) result += `) `;
     if (firstPart) result += firstPart;
     if (secondPart) result += `-${secondPart}`;
-    console.log(result);
     return result;
   }
 
@@ -145,6 +145,7 @@ export default function Contact(props: {id: string}) {
               name="contact"
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
               data-netlify="true"
+              autoComplete="off"
               onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="contact" />
@@ -157,6 +158,8 @@ export default function Contact(props: {id: string}) {
                   name="name"
                   title=""
                   type="text"
+                  autoComplete="nope"
+                  required
                   className="block mt-2 rounded-md outline outline-1 outline-gray-300 w-full p-2 text-black"
                 />
               </div>
@@ -168,6 +171,8 @@ export default function Contact(props: {id: string}) {
                   id="email"
                   name="email"
                   type="email"
+                  autoComplete="nono"
+                  required
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
               </div>
@@ -180,6 +185,7 @@ export default function Contact(props: {id: string}) {
                   name="phone"
                   type="tel"
                   value={phone}
+                  autoComplete="nope"
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                   onChange={(event) => {
                     const formattedValue = formatPhone(event.target.value);
@@ -194,6 +200,8 @@ export default function Contact(props: {id: string}) {
                 <textarea
                   id="message"
                   name="message"
+                  autoComplete="nope"
+                  required
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
               </div>
