@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     url: "https://amandavilela.com",
     images: [
       {
-        url: "../public/ogimage.jpg",
-        width: 800,
-        height: 600,
+        url: image.src,
+        width: image.width,
+        height: image.height,
       },
     ],
     siteName: "Amanda Vilela",
