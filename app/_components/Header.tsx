@@ -20,6 +20,8 @@ export default function Header() {
     const handleHashChange = () => setActiveHash(window.location.hash);
     const handleScroll = () => setScrolled(window.scrollY > 10);
 
+    handleScroll();
+
     window.addEventListener("hashchange", handleHashChange);
     window.addEventListener("scroll", handleScroll);
 
