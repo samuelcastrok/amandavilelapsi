@@ -36,10 +36,10 @@ export default function Header() {
   }
 
   return (    
-    <header className="sticky inset-x-0 mt-2 top-0 z-50 h-[84px] select-none bg-background-primary text-secondary-color">
-      <nav className={`flex items-center h-full justify-between  g-8 relative ${
+    <header className="sticky inset-x-0 top-0 p-2 z-50 h-[84px] select-none text-secondary-color">
+      <nav className={`flex items-center h-full justify-between rounded-lg g-8 relative ${
         scrolled
-          ? "bg-background-primary/80 shadow backdrop-blur"
+          ? "bg-navbar-soft shadow-[inset_0_0_2px_2px_rgba(0,0,0,0.1)]  backdrop-blur"
           : "bg-transparent"
       }`} aria-label="Global">
         <Image className="h-full max-w-[200px] px-4" src={logo} alt="Logo"/>

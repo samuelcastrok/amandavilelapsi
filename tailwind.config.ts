@@ -27,7 +27,8 @@ const config: Config = {
                 'background-primary': 'var(--background-primary)',
                 'secondary-color': 'var(--secondary-color)',
                 'secondary-text-color': 'var(--secondary-text-color)',
-                'background-secondary': 'var(--background-secondary)'
+                'background-secondary': 'var(--background-secondary)',
+                'navbar-soft': 'rgba(204, 178, 153, 0.85)'
             },
             fontFamily: {
                 catchye: ["'Catchye'", "'sans-serif'"],
