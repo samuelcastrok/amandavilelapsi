@@ -9,7 +9,7 @@ export default function Approach(props: {id: string}) {
           <h1 className="mb-6 text-6xl font-pritude-radiance">Abordagem</h1>
           <hr className="w-full bt-1 border-[#e6d6be]" />
         </header>
-        <div className="section-container flex flex-col gap-2 sm:max-w-[55%]">          
+        <div className="section-container flex flex-col gap-y-4 sm:max-w-[55%]">          
           <p>
             Meu trabalho é pautado nas Terapias Comportamentais Contextuais, com foco na ACT, Terapia de Aceitação e Compromisso.
           </p>
