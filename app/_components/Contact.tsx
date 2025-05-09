@@ -9,50 +9,14 @@ import { useState } from "react";
 
 export default function Contact(props: {id: string}) {
   const [phone, setPhone] = useState("");
-  // const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   
-  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault(); 
-
-  //   const target = event.target as HTMLFormElement;
-  //   const formData = new FormData(target);
-    
-  //   const name = formData.get("name") as string;
-  //   const email = formData.get("email") as string;
-  //   const rawPhone = formData.get("phone")?.toString() ?? "";
-  //   const phone = rawPhone.replace(/\D/g, "");
-  //   const message = formData.get("message") as string;
-
-  //   try {
-  //     const response = await fetch("/", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //       body: new URLSearchParams({
-  //         'form-name': 'contact',
-  //         name,
-  //         email,
-  //         phone,
-  //         message,
-  //       }).toString(),
-  //     })
-
-  //     if (response.ok) {
-  //       setFormStatus("success");
-  //       target.reset(); 
-  //     } else {
-  //       setFormStatus("error");
-  //     }
-  //   } catch (error) {
-  //     console.error("Form submission error:", error);
-  //     setFormStatus("error");
-  //   }
-  // };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setFormStatus("submitting");
 
     const target = event.target as HTMLFormElement;
     const formData = new FormData(target);
-
 
     const data = {
       "form-name": "contact",
@@ -62,14 +26,24 @@ export default function Contact(props: {id: string}) {
       message: formData.get("message")?.toString() ?? "",
     };
   
-    await fetch("/__forms.html", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(data).toString(),
-    });
+    try {
+      await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString(),
+      });
 
-    setPhone("");
-    target.reset(); 
+      setFormStatus("success");
+      setPhone("");
+      target.reset();
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus("idle");
+      }, 5000);
+    } catch {
+      setFormStatus("error");
+    }
   };
 
   const formatPhone = (value: string) => {
@@ -87,7 +61,7 @@ export default function Contact(props: {id: string}) {
   }
 
   return (
-    <section id={props.id} className="h-full  text-secondary-color bg-[url(../public/images/VLFC0500.jpg)] bg-[center_60%] bg-cover">
+    <section id={props.id} className="h-full text-secondary-color font-bold sm:font-normal bg-[url(../public/images/VLFC0500.jpg)] bg-[14%_3%] sm:bg-[center_60%] sm:bg-cover">
       <div className="h-full w-full px-4 sm:px-20 py-10 m-auto backdrop-blur-[3px]">
         <div className="flex flex-col sm:flex-row">
           <div className="w-full sm:w-1/2 p-8">
@@ -97,7 +71,7 @@ export default function Contact(props: {id: string}) {
                 {/* <Image src={whatsappIcon} alt="Ícone do Whatsapp" className="h-6 w-6"/> */}
                 <a 
                   className="text-xl"
-                  href="https://wa.me/5543999162436"
+                  href="https://wa.me/message/OBXTA5PU5G56M1"
                   target="_blank"
                   aria-label="Converse comigo pelo Whatsapp" 
                 >
@@ -149,6 +123,18 @@ export default function Contact(props: {id: string}) {
               onSubmit={handleSubmit}
             >
               <input type="hidden" name="form-name" value="contact" />
+              {formStatus === "success" && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                  <strong className="font-bold">Mensagem enviada com sucesso!</strong>
+                  <span className="block sm:inline"> Entrarei em contato em breve.</span>
+                </div>
+              )}
+              {formStatus === "error" && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                  <strong className="font-bold">Erro ao enviar mensagem.</strong>
+                  <span className="block sm:inline"> Por favor, tente novamente mais tarde.</span>
+                </div>
+              )}
               <div>
                 <label htmlFor="name" className="block">
                   Nome
@@ -158,7 +144,7 @@ export default function Contact(props: {id: string}) {
                   name="name"
                   title=""
                   type="text"
-                  autoComplete="nope"
+                  autoComplete="off"
                   required
                   className="block mt-2 rounded-md outline outline-1 outline-gray-300 w-full p-2 text-black"
                 />
@@ -171,7 +157,7 @@ export default function Contact(props: {id: string}) {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="nono"
+                  autoComplete="off"
                   required
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
@@ -185,7 +171,7 @@ export default function Contact(props: {id: string}) {
                   name="phone"
                   type="tel"
                   value={phone}
-                  autoComplete="nope"
+                  autoComplete="off"
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                   onChange={(event) => {
                     const formattedValue = formatPhone(event.target.value);
@@ -200,7 +186,7 @@ export default function Contact(props: {id: string}) {
                 <textarea
                   id="message"
                   name="message"
-                  autoComplete="nope"
+                  autoComplete="off"
                   required
                   className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
                 />
