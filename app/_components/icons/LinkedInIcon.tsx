@@ -10,6 +10,8 @@ const LinkedInIcon = (props: { color: string; className?: string }) => (
       strokeLinejoin: "round",
       strokeMiterlimit: 2,
       fill: props.color,
+      minWidth: "24px",
+      minHeight: "24px"
     }}
     viewBox="0 0 512 512"
     {...props}

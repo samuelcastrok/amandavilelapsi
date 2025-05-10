@@ -66,7 +66,7 @@ export default function Contact(props: {id: string}) {
         <div className="flex flex-col sm:flex-row">
           <div className="w-full sm:w-1/2 p-8">
             <ul>
-              <li className="flex items-center gap-6 my-4">
+              <li className="flex items-center gap-4 sm:gap-6 my-4">
                 <WhatsAppIcon color="var(--secondary-color)" className="h-6 w-6" />
                 {/* <Image src={whatsappIcon} alt="Ícone do Whatsapp" className="h-6 w-6"/> */}
                 <a 
@@ -78,7 +78,7 @@ export default function Contact(props: {id: string}) {
                   (43) 99916-2436
                 </a>
               </li>
-              <li className="flex items-center gap-6 my-4">
+              <li className="flex items-center gap-4 sm:gap-6 my-4">
                 <InstagramIcon color="var(--secondary-color)" className="h-6 w-6" />
                 <a
                   className="text-xl"
@@ -89,7 +89,7 @@ export default function Contact(props: {id: string}) {
                   @amandavilelak
                 </a>
               </li>
-              <li className="flex items-center gap-6 my-4">
+              <li className="flex items-center gap-4 sm:gap-6 my-4">
                 <LinkedInIcon color="var(--secondary-color)" className="h-6 w-6" />
                 <a
                   className="text-xl"
@@ -100,7 +100,7 @@ export default function Contact(props: {id: string}) {
                   /amandavilela
                 </a>
               </li>
-              <li className="flex items-center gap-6 my-4">
+              <li className="flex items-center gap-4 sm:gap-6 my-4">
                 <GmailIcon color="var(--secondary-color)" className="h-6 w-6" />
                 <a
                   className="text-xl"
@@ -114,7 +114,7 @@ export default function Contact(props: {id: string}) {
             </ul>
           </div>
           <div className="w-full sm:w-1/2">
-            <h1 className="text-6xl text-[#e6d6be] font-pritude-radiance">Entre em contato</h1>
+            <h1 className="mb-2 text-5xl sm:text-6xl text-[#e6d6be] font-pritude-radiance">Entre em contato</h1>
             <form 
               name="contact"
               className="flex flex-col gap-8 w-full bg-[#e6d6be] text-primary-color rounded-xl p-12" 
@@ -146,7 +146,7 @@ export default function Contact(props: {id: string}) {
                   type="text"
                   autoComplete="off"
                   required
-                  className="block mt-2 rounded-md outline outline-1 outline-gray-300 w-full p-2 text-black"
+                  className="block mt-2 rounded-md outline outline-1 outline-gray-300 w-full p-2 text-black transition-all duration-200 focus:outline-2 focus:outline-primary-color"
                 />
               </div>
               <div>
@@ -159,7 +159,7 @@ export default function Contact(props: {id: string}) {
                   type="email"
                   autoComplete="off"
                   required
-                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black transition-all duration-200 focus:outline-2 focus:outline-primary-color"
                 />
               </div>
               <div>
@@ -172,7 +172,7 @@ export default function Contact(props: {id: string}) {
                   type="tel"
                   value={phone}
                   autoComplete="off"
-                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black transition-all duration-200 focus:outline-2 focus:outline-primary-color"
                   onChange={(event) => {
                     const formattedValue = formatPhone(event.target.value);
                     setPhone(formattedValue);
@@ -188,7 +188,7 @@ export default function Contact(props: {id: string}) {
                   name="message"
                   autoComplete="off"
                   required
-                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black"
+                  className="mt-2 p-2 w-full rounded-md outline outline-1 outline-gray-300 text-black transition-all duration-200 focus:outline-2 focus:outline-primary-color"
                 />
               </div>
               <button className="bg-primary-color text-[#e6d6be] rounded-full p-2" >Enviar mensagem</button>

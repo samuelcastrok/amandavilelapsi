@@ -10,8 +10,11 @@ const GmailIcon = (props: { color?: string; className?: string }) => (
       strokeLinejoin: "round",
       strokeMiterlimit: 2,
       fill: props.color,
+      minWidth: "24px",
+      minHeight: "24px"
     }}
     viewBox="0 0 512 512"
+    preserveAspectRatio="xMidYMid meet"
     {...props}
   >
     <circle cx={255.999} cy={256} r={246.455} />
