@@ -1,3 +1,9 @@
 [build]
   publish = ".next"
   command = "npm run build"
+
+[[redirects]]
+  from = "https://amandavilelapsi.netlify.app/*"
+  to = "https://amandavilela.com/:splat"
+  status = 301
+  force = true
