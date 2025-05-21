@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "Terapia Comportamental",
     "Terapia Cognitivo Comportamental",
   ],
-  description: "Amanda Vilela - Psicoterapia",
+  description: "Amanda Vilela é psicóloga comportamental que oferece atendimentos online e presenciais nas cidades de Londrina e Apucarana. Agende sua consulta e conte com um atendimento especializado para o seu bem-estar emocional.",
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
@@ -32,19 +32,26 @@ export const metadata: Metadata = {
   },
   manifest: '/site.webmanifest',
   openGraph: {
-    title: "Amanda Vilela - Psicóloga Comportamental", 
+    title: "Amanda Vilela - Psicóloga Comportamental",
     description: "Amanda Vilela é psicóloga comportamental que oferece atendimentos online e presenciais nas cidades de Londrina e Apucarana. Agende sua consulta e conte com um atendimento especializado para o seu bem-estar emocional.",
     url: "https://amandavilela.com",
+    siteName: "Amanda Vilela - Psicóloga Comportamental",
     images: [
       {
-        url: image.src,
-        width: image.width,
-        height: image.height,
+        url: "https://amandavilela.com/ogimage.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Amanda Vilela - Psicóloga Comportamental",
       },
     ],
-    siteName: "Amanda Vilela",
-    type: "website",
     locale: "pt-BR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Amanda Vilela - Psicóloga Comportamental",
+    description: "Amanda Vilela é psicóloga comportamental que oferece atendimentos online e presenciais nas cidades de Londrina e Apucarana.",
+    images: ["https://amandavilela.com/ogimage.jpg"],
   },
 };
 
