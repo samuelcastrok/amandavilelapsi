@@ -26,18 +26,14 @@ export const metadata: Metadata = {
   ],
   description: "Amanda Vilela - Psicoterapia",
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
-    ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180' },
-    ],
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
   openGraph: {
     title: "Amanda Vilela - Psicóloga Comportamental", 
-    description: "Amanda Vilela - Psicóloga Comportamental",
+    description: "Amanda Vilela é psicóloga comportamental que oferece atendimentos online e presenciais nas cidades de Londrina e Apucarana. Agende sua consulta e conte com um atendimento especializado para o seu bem-estar emocional.",
     url: "https://amandavilela.com",
     images: [
       {
@@ -66,8 +62,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#FFFFFF" />
       </head>
       <body className={quicksand.className}>
-        <link itemProp="url" href="https://example.com" />
-        <meta itemProp="name" content="Example"/>
         <Header />
         {children}
       </body>
